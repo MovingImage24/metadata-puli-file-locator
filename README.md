@@ -1,6 +1,6 @@
 # Metadata PuliFileLocator
 
-[![Build Status](https://travis-ci.org/MovingImage24/metadata-puli-file-locator.svg?branch=master)](https://travis-ci.org/MovingImage24/videomanager-sdk)
+[![Build Status](https://travis-ci.org/MovingImage24/metadata-puli-file-locator.svg?branch=master)](https://travis-ci.org/MovingImage24/metadata-puli-file-locator)
 [![Latest Stable Version](https://poser.pugx.org/mi/videomanager-sdk/v/stable)](https://packagist.org/packages/mi/metadata-puli-file-locator)
 [![Latest Unstable Version](https://poser.pugx.org/mi/metadata-puli-file-locator/v/unstable)](https://packagist.org/packages/mi/metadata-puli-file-locator)
 [![Total Downloads](https://poser.pugx.org/mi/metadata-puli-file-locator/downloads)](https://packagist.org/packages/mi/metadata-puli-file-locator)
