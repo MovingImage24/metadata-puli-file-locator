@@ -12,7 +12,7 @@ matrix:
 before_script:
   - composer install --prefer-source --no-interaction --no-progress
   - export PATH=./vendor/bin:$PATH
-  - pip install codecov
+  - sudo pip install codecov
 
 script:
   - phpunit -v --coverage-clover=coverage.clover
