@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "name": "mi/metadata-puli-file-locator",
+    "binding-types": {
+        "jms/serializer-metadata": {
+            "description": "A config file with jms serializer metadata for a class",
+            "parameters": {
+                "extension": {
+                    "required": true
+                },
+                "namespace-prefix": {
+                    "required": true
+                }
+            }
+        }
+    }
+}

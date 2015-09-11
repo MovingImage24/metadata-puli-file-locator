@@ -41,7 +41,10 @@ class PuliFileLocatorTest extends \PHPUnit_Framework_TestCase
         self::assertNull($locator->findFileForClass($ref, 'yml'));
     }
 
-    public function testTraits()
+    /**
+     * @test
+     */
+    public function traits()
     {
         $locator = new PuliFileLocator($this->repo, [
             'Mi\Puli\Tests\Metadata\Driver\Fixture\T' => '/Fixture/T'
@@ -51,7 +54,10 @@ class PuliFileLocatorTest extends \PHPUnit_Framework_TestCase
         self::assertEquals(realpath(__DIR__.'/Fixture/T/T.xml'), realpath($locator->findFileForClass($ref, 'xml')));
     }
 
-    public function testFindFileForGlobalNamespacedClass()
+    /**
+     * @test
+     */
+    public function findFileForGlobalNamespacedClass()
     {
         $locator = new PuliFileLocator($this->repo, [
             '' => '/Fixture/D'
@@ -62,13 +68,16 @@ class PuliFileLocatorTest extends \PHPUnit_Framework_TestCase
         self::assertEquals(realpath(__DIR__.'/Fixture/D/D.yml'), realpath($locator->findFileForClass($ref, 'yml')));
     }
 
-    public function testFindAllFiles()
+    /**
+     * @test
+     */
+    public function findAllFiles()
     {
         $locator = new PuliFileLocator($this->repo, [
             'Mi\Puli\Tests\Metadata\Driver\Fixture\A' => '/Fixture/A',
             'Mi\Puli\Tests\Metadata\Driver\Fixture\B' => '/Fixture/B',
             'Mi\Puli\Tests\Metadata\Driver\Fixture\C' => '/Fixture/C',
-            'Mi\Puli\Tests\Metadata\Driver\Fixture\D' => '/Fixture/D'
+            '' => '/Fixture/D'
         ]);
 
         self::assertCount(1, $xmlFiles = $locator->findAllClasses('xml'));
@@ -77,7 +86,7 @@ class PuliFileLocatorTest extends \PHPUnit_Framework_TestCase
         self::assertCount(3, $ymlFiles = $locator->findAllClasses('yml'));
         self::assertSame('Mi\Puli\Tests\Metadata\Driver\Fixture\B\B', $ymlFiles[0]);
         self::assertSame('Mi\Puli\Tests\Metadata\Driver\Fixture\C\SubDir\C', $ymlFiles[1]);
-        self::assertSame('Mi\Puli\Tests\Metadata\Driver\Fixture\D\D', $ymlFiles[2]);
+        self::assertSame('D', $ymlFiles[2]);
     }
 
 
