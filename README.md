@@ -5,6 +5,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/mi/metadata-puli-file-locator/v/unstable)](https://packagist.org/packages/mi/metadata-puli-file-locator)
 [![Total Downloads](https://poser.pugx.org/mi/metadata-puli-file-locator/downloads)](https://packagist.org/packages/mi/metadata-puli-file-locator)
 [![License](https://poser.pugx.org/mi/metadata-puli-file-locator/license)](https://packagist.org/packages/mi/metadata-puli-file-locator)
+[![StyleCI](https://styleci.io/repos/37872708/shield)](https://styleci.io/repos/37872708)
 
 ## Overview
 
