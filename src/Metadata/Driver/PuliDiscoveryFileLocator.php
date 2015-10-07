@@ -3,7 +3,8 @@
 namespace Mi\Puli\Metadata\Driver;
 
 use Metadata\Driver\FileLocatorInterface;
-use Puli\Discovery\Api\ResourceDiscovery;
+use Puli\Discovery\Api\Discovery;
+use Puli\Discovery\Binding\ResourceBinding;
 use Webmozart\Glob\Glob;
 
 /**
@@ -14,9 +15,9 @@ class PuliDiscoveryFileLocator implements FileLocatorInterface
     private $discovery;
 
     /**
-     * @param ResourceDiscovery $discovery
+     * @param Discovery $discovery
      */
-    public function __construct(ResourceDiscovery $discovery)
+    public function __construct(Discovery $discovery)
     {
         $this->discovery = $discovery;
     }
@@ -32,7 +33,8 @@ class PuliDiscoveryFileLocator implements FileLocatorInterface
     {
         $classes = array();
 
-        foreach ($this->discovery->findByType('jms/serializer-metadata') as $binding) {
+        /** @var ResourceBinding $binding */
+        foreach ($this->discovery->findBindings('jms/serializer-metadata') as $binding) {
             if ($binding->getParameterValue('extension') !== $extension) {
                 continue;
             }
@@ -56,7 +58,8 @@ class PuliDiscoveryFileLocator implements FileLocatorInterface
      */
     public function findFileForClass(\ReflectionClass $class, $extension)
     {
-        foreach ($this->discovery->findByType('jms/serializer-metadata') as $binding) {
+        /** @var ResourceBinding $binding */
+        foreach ($this->discovery->findBindings('jms/serializer-metadata') as $binding) {
             $prefix = $binding->getParameterValue('namespace-prefix');
             if ($binding->getParameterValue('extension') !== $extension
                 || ('' !== $prefix && 0 !== strpos($class->getNamespaceName(), $prefix))

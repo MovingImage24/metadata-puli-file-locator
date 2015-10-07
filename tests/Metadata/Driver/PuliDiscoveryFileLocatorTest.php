@@ -3,8 +3,10 @@
 namespace Mi\Puli\Tests\Metadata\Driver;
 
 use Mi\Puli\Metadata\Driver\PuliDiscoveryFileLocator;
-use Puli\Discovery\Api\Binding\BindingParameter;
-use Puli\Discovery\Api\Binding\BindingType;
+use Puli\Discovery\Api\Type\BindingParameter;
+use Puli\Discovery\Api\Type\BindingType;
+use Puli\Discovery\Binding\Initializer\ResourceBindingInitializer;
+use Puli\Discovery\Binding\ResourceBinding;
 use Puli\Discovery\InMemoryDiscovery;
 use Puli\Repository\FilesystemRepository;
 
@@ -88,8 +90,8 @@ class PuliDiscoveryFileLocatorTest extends \PHPUnit_Framework_TestCase
     {
         $repo = new FilesystemRepository(__DIR__, true);
 
-        $discovery = new InMemoryDiscovery($repo);
-        $discovery->defineType(
+        $discovery = new InMemoryDiscovery([new ResourceBindingInitializer($repo)]);
+        $discovery->addBindingType(
             new BindingType(
                 'jms/serializer-metadata',
                 [
@@ -98,30 +100,41 @@ class PuliDiscoveryFileLocatorTest extends \PHPUnit_Framework_TestCase
                 ]
             )
         );
-        $discovery->bind(
-            '/Fixture/A/*.xml',
-            'jms/serializer-metadata',
-            ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\A', 'extension' => 'xml']
+        $discovery->addBinding(
+            new ResourceBinding(
+                '/Fixture/A/*.xml',
+                'jms/serializer-metadata',
+                ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\A', 'extension' => 'xml']
+            )
+
         );
-        $discovery->bind(
-            '/Fixture/B/*.yml',
-            'jms/serializer-metadata',
-            ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\B', 'extension' => 'yml']
+        $discovery->addBinding(
+            new ResourceBinding(
+                '/Fixture/B/*.yml',
+                'jms/serializer-metadata',
+                ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\B', 'extension' => 'yml']
+            )
         );
-        $discovery->bind(
-            '/Fixture/C/*.yml',
-            'jms/serializer-metadata',
-            ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\C', 'extension' => 'yml']
+        $discovery->addBinding(
+            new ResourceBinding(
+                '/Fixture/C/*.yml',
+                'jms/serializer-metadata',
+                ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\C', 'extension' => 'yml']
+            )
         );
-        $discovery->bind(
-            '/Fixture/D/*.yml',
-            'jms/serializer-metadata',
-            ['namespace-prefix' => '', 'extension' => 'yml']
+        $discovery->addBinding(
+            new ResourceBinding(
+                '/Fixture/D/*.yml',
+                'jms/serializer-metadata',
+                ['namespace-prefix' => '', 'extension' => 'yml']
+            )
         );
-        $discovery->bind(
-            '/Fixture/T/*.xml',
-            'jms/serializer-metadata',
-            ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\T', 'extension' => 'xml']
+        $discovery->addBinding(
+            new ResourceBinding(
+                '/Fixture/T/*.xml',
+                'jms/serializer-metadata',
+                ['namespace-prefix' => 'Mi\Puli\Tests\Metadata\Driver\Fixture\T', 'extension' => 'xml']
+            )
         );
 
         $this->locator = new PuliDiscoveryFileLocator($discovery);

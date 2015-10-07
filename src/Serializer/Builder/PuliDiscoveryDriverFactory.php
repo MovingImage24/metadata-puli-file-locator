@@ -10,7 +10,7 @@ use JMS\Serializer\Metadata\Driver\XmlDriver;
 use JMS\Serializer\Metadata\Driver\YamlDriver;
 use Metadata\Driver\DriverChain;
 use Mi\Puli\Metadata\Driver\PuliDiscoveryFileLocator;
-use Puli\Discovery\Api\ResourceDiscovery;
+use Puli\Discovery\Api\Discovery;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>
@@ -22,9 +22,9 @@ class PuliDiscoveryDriverFactory implements DriverFactoryInterface
     private $discovery;
 
     /**
-     * @param ResourceDiscovery $discovery
+     * @param Discovery $discovery
      */
-    public function __construct(ResourceDiscovery $discovery)
+    public function __construct(Discovery $discovery)
     {
         $this->discovery = $discovery;
     }
