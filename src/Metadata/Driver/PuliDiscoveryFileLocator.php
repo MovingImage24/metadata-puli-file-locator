@@ -73,7 +73,7 @@ class PuliDiscoveryFileLocator implements FileLocatorInterface
             }
 
             $basePath = Glob::getBasePath($binding->getQuery());
-            $path     = $basePath . '/' . str_replace('\\', '.', substr($class->name, $len)) . '.' . $extension;
+            $path = $basePath . '/' . str_replace('\\', '.', substr($class->name, $len)) . '.' . $extension;
             if (($key = array_search($path, $binding->getResources()->getPaths(), true)) !== false) {
                 return $binding->getResources()->get($key)->getFilesystemPath();
             }

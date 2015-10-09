@@ -96,7 +96,7 @@ class PuliDiscoveryFileLocatorTest extends \PHPUnit_Framework_TestCase
                 'jms/serializer-metadata',
                 [
                     new BindingParameter('namespace-prefix', BindingParameter::REQUIRED),
-                    new BindingParameter('extension', BindingParameter::REQUIRED)
+                    new BindingParameter('extension', BindingParameter::REQUIRED),
                 ]
             )
         );

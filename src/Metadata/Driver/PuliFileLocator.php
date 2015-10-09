@@ -21,9 +21,8 @@ class PuliFileLocator implements AdvancedFileLocatorInterface
     public function __construct(ResourceRepository $repository, array $dirs)
     {
         $this->repository = $repository;
-        $this->dirs       = $dirs;
+        $this->dirs = $dirs;
     }
-
 
     /**
      * Finds all possible metadata files.
@@ -36,7 +35,6 @@ class PuliFileLocator implements AdvancedFileLocatorInterface
     {
         $classes = array();
         foreach ($this->dirs as $prefix => $dir) {
-
             $nsPrefix = $prefix !== '' ? $prefix.'\\' : '';
 
             $collection = $this->repository->find($dir.'/**/*.'.$extension);
@@ -45,7 +43,7 @@ class PuliFileLocator implements AdvancedFileLocatorInterface
             }
 
             /** @var FileResource $resource */
-            foreach($collection as $resource) {
+            foreach ($collection as $resource) {
                 $classes[] = $nsPrefix.str_replace('.', '\\', pathinfo($resource->getName(), PATHINFO_FILENAME));
             }
         }
@@ -66,7 +64,7 @@ class PuliFileLocator implements AdvancedFileLocatorInterface
                 continue;
             }
 
-            $len  = '' === $prefix ? 0 : strlen($prefix) + 1;
+            $len = '' === $prefix ? 0 : strlen($prefix) + 1;
             $path = $dir . '/' . str_replace('\\', '.', substr($class->name, $len)) . '.' . $extension;
 
             if ($this->repository->contains($path)) {
@@ -76,5 +74,4 @@ class PuliFileLocator implements AdvancedFileLocatorInterface
 
         return null;
     }
-
 }
