@@ -6,3 +6,4 @@ enabled:
 
 disabled:
     - empty_return
+    - concat_without_spaces
