@@ -2,4 +2,6 @@
 
 namespace Mi\Puli\Tests\Metadata\Driver\Fixture\B;
 
-class B { }
+class B
+{
+}

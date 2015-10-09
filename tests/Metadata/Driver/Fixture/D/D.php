@@ -1,3 +1,5 @@
 <?php
 
-class D { }
+class D
+{
+}

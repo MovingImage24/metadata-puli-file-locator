@@ -44,7 +44,7 @@ class PuliRepositoryDriverFactory implements DriverFactoryInterface
             array(
                 new YamlDriver($fileLocator),
                 new XmlDriver($fileLocator),
-                new PhpDriver($fileLocator)
+                new PhpDriver($fileLocator),
             )
         );
 
